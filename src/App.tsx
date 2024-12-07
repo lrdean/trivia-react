@@ -34,19 +34,13 @@ function App() {
       <h1 style={{ textAlign: "center" }}>Welcome to my Food Trivia App!</h1>
       <h2 style={{ padding: "10px" }}>
         There are {questions.length} questions. It’s your time playing a quiz on
-        TriviaNerd - welcome! Let’s go through the basics so you can become the
-        master of trivia. Playing trivia and testing your knowledge is one of
-        the best ways to keep your brain sharp and expand your repertoire of
-        facts about the world. Each question in our games gets its own dedicated
-        page where you can choose the correct answer You’ll also notice at the
-        top of the page a handy statistics bar that tracks your progress
-        throughout the trivia game and even lets you know when you’re on a hot
-        streak - fun! Make sure you finish the quiz so you can see your final
-        score at the end, plus a full breakdown of all the correct answers along
-        with context on why they were correct. If you ever see an incorrect
-        question or answer then please reach out to us because keeping our
-        content top quality is of vital importance to us, we would be very
-        grateful.
+        - welcome! Let’s go through the basics so you can become the master of
+        trivia. Playing trivia and testing your knowledge is one of the best
+        ways to keep your brain sharp and expand your repertoire of facts about
+        the world. Each question in our games gets its own dedicated page where
+        you can choose the correct answer You’ll also notice at the top of the
+        page a handy statistics bar that tracks your progress throughout the
+        trivia game and even lets you know when you’re on a hot streak - fun!
       </h2>
 
       <div
