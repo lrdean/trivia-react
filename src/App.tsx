@@ -1,5 +1,10 @@
 import { Fragment, useState } from "react";
 import { questions } from "./components/Questions"; // Import questions correctly
+import {
+  handleButtonClick,
+  handleNextQuestion,
+  handlePreviousQuestion,
+} from "./Nav";
 
 function App() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -126,7 +131,7 @@ function App() {
             Previous
           </button>
           <button
-            className="btn btn-primary"
+            className="btn btn-outline-primary"
             onClick={handleNextQuestion}
             disabled={currentQuestionIndex === questions.length - 1}
           >
