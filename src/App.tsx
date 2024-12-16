@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react";
 import { questions } from "./components/Questions"; // Import questions correctly
-import Nav from "./Nav";
+import Nav from "./Nav"; // Import the Nav component
 
 function App() {
   const [quizStarted, setQuizStarted] = useState(false); // Track whether the quiz has started
@@ -14,6 +14,11 @@ function App() {
     setSelectedAnswer(buttonName);
     setSelectedIndex(index);
     setIsAnswered(true);
+
+    // Update the score if the selected answer is correct
+    if (buttonName === questions[currentQuestionIndex].correctAnswer) {
+      setScore((prevScore) => prevScore + 1); // Increment score
+    }
   };
 
   const handleNextQuestion = () => {
@@ -109,10 +114,23 @@ function App() {
               }}
             >
               <h3 style={{ alignItems: "right" }}>
-                Question: {currentQuestion.id} of {questions.length}
+                Question: {currentQuestionIndex + 1} of {questions.length}
               </h3>
               {currentQuestion.question}
             </h2>
+          </div>
+
+          {/* Display the current score below the question */}
+          <div
+            style={{
+              fontSize: "20px",
+              fontWeight: "bold",
+              color: "#007bff",
+              textAlign: "center",
+              marginBottom: "20px",
+            }}
+          >
+            Current Score: {score}
           </div>
 
           {/* Answers as Cards */}
@@ -164,40 +182,12 @@ function App() {
           </div>
 
           {/* Navigation Buttons */}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              width: "80%",
-              maxWidth: "800px",
-              marginTop: "20px",
-            }}
-          >
-            <button
-              className="btn btn-outline-primary"
-              onClick={handlePreviousQuestion}
-              disabled={currentQuestionIndex === 0}
-              style={{
-                padding: "10px 20px",
-                fontSize: "16px",
-                borderRadius: "8px",
-              }}
-            >
-              Previous
-            </button>
-            <button
-              className="btn btn-outline-primary"
-              onClick={handleNextQuestion}
-              disabled={currentQuestionIndex === questions.length - 1}
-              style={{
-                padding: "10px 20px",
-                fontSize: "16px",
-                borderRadius: "8px",
-              }}
-            >
-              Next
-            </button>
-          </div>
+          <Nav
+            onPrevious={handlePreviousQuestion}
+            onNext={handleNextQuestion}
+            disablePrevious={currentQuestionIndex === 0}
+            disableNext={currentQuestionIndex === questions.length - 1}
+          />
         </div>
       )}
     </Fragment>

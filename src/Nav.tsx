@@ -1,63 +1,54 @@
-import { Fragment, useState } from "react";
-import App from "./App";
-import { questions } from "./components/Questions";
+import React from "react";
 
-function Nav() {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedIndex, setSelectedIndex] = useState(-1);
-  const [selectedAnswer, setSelectedAnswer] = useState("");
-  const [isAnswered, setIsAnswered] = useState(false);
-  const [score, setScore] = useState<number>(0);
+interface NavProps {
+  onPrevious: () => void; // Function to handle "Previous" button click
+  onNext: () => void; // Function to handle "Next" button click
+  disablePrevious: boolean; // Disable "Previous" button if true
+  disableNext: boolean; // Disable "Next" button if true
+}
 
-  const handleButtonClick = (answer: string, index: number) => {
-    setSelectedAnswer(answer);
-    setSelectedIndex(index);
-    setIsAnswered(true);
-
-    if (answer === questions[currentQuestionIndex].correctAnswer) {
-      setScore((prevScore) => prevScore + 1);
-    }
-  };
-
-  const handleNextQuestion = () => {
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-      setSelectedIndex(-1);
-      setSelectedAnswer("");
-      setIsAnswered(false);
-    }
-  };
-
-  const handlePreviousQuestion = () => {
-    if (currentQuestionIndex > 0) {
-      setCurrentQuestionIndex(currentQuestionIndex - 1);
-      setSelectedIndex(-1);
-      setSelectedAnswer("");
-      setIsAnswered(false);
-    }
-  };
-
+const Nav: React.FC<NavProps> = ({
+  onPrevious,
+  onNext,
+  disablePrevious,
+  disableNext,
+}) => {
   return (
-    <Fragment>
-      <h1>Navigation Component</h1>
-      {/* Example rendering */}
-      <p>Current Question Index: {currentQuestionIndex}</p>
-      <p>Selected Answer: {selectedAnswer}</p>
-      <p>Score: {score}</p>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        width: "80%",
+        maxWidth: "800px",
+        marginTop: "20px",
+      }}
+    >
       <button
-        onClick={handlePreviousQuestion}
-        disabled={currentQuestionIndex === 0}
+        className="btn btn-outline-primary"
+        onClick={onPrevious}
+        disabled={disablePrevious}
+        style={{
+          padding: "10px 20px",
+          fontSize: "16px",
+          borderRadius: "8px",
+        }}
       >
         Previous
       </button>
       <button
-        onClick={handleNextQuestion}
-        disabled={currentQuestionIndex === questions.length - 1}
+        className="btn btn-outline-primary"
+        onClick={onNext}
+        disabled={disableNext}
+        style={{
+          padding: "10px 20px",
+          fontSize: "16px",
+          borderRadius: "8px",
+        }}
       >
         Next
       </button>
-    </Fragment>
+    </div>
   );
-}
+};
 
 export default Nav;
