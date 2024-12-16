@@ -75,8 +75,10 @@ function App() {
             style={{
               padding: "10px 20px",
               fontSize: "18px",
+              fontPalette: "dark",
               borderRadius: "8px",
               backgroundColor: "#FFE4B5",
+              color: "#333333",
             }}
             onClick={startQuiz}
           >
